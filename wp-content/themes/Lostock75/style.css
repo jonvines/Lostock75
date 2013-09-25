@@ -1,0 +1,271 @@
+/*
+Theme Name: 	Starkers
+Theme URI: 		http://viewportindustries.com/products/starkers
+Description: 	The totally nude Wordpress theme!
+Version: 		4.0
+Author: 		Elliot Jay Stocks & Keir Whitaker
+Author URI: 	http://viewportindustries.com
+Tags: 			starkers, naked, clean, basic
+*/
+
+/*
+===========================
+CONTENTS:
+
+01 Sensible defaults
+02 Typography
+03 Media queries 
+===========================
+*/
+
+/* ---------------------------------------------------------------------------------------------------------- 
+01 Sensible defaults ----------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------- */
+
+@import "css/reset.css";
+
+div,
+article,
+section,
+header,
+footer,
+nav,
+li					{ position:relative; /* For absolutely positioning elements within containers (add more to the list if need be) */ }
+.group:after 		{ display:block; height:0; clear:both; content:"."; visibility:hidden; /* For clearing */ }
+body 				{ background:#fff; /* Don't forget to style your body to avoid user overrides */ }
+::-moz-selection 	{ background:#ff0; color:#333; }
+::selection 		{ background:#ff0; color:#333; }
+
+/* ---------------------------------------------------------------------------------------------------------- 
+02 Typography -----------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------- */
+/*
+
+14 / 16	= 		0.875em 		(14px equivalent)
+16 / 16	= 		1em 			(16px equivalent)
+18 / 16 = 		1.125em 		(18px equivalent)
+21 / 16 = 		1.3125em 		(21px equivalent)
+24 / 16 = 		1.5em 			(24px equivalent)
+30 / 16 = 		1.875em 		(30px equivalent)
+
+*/
+
+body,
+input,
+textarea 			{ 
+    font-size: 0.875em;
+    color: #444;
+    font-family: "HelveticaNeau", Arial, sans-serif;
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 	{ font-family: "HelveticaNeau", Arial, sans-serif;
+         margin-bottom: .3em;
+}
+
+h1, h2, #secondary h3.widget-title {
+    font-size: 1.8em;
+}
+h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+h4 {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+p, ul, ol {
+    margin-bottom: .6em;
+}
+
+a {
+    color: #561a1a;
+}
+
+/* ---------------------------------------------------------------------------------------------------------- 
+03 Media queries (using a mobile-first approach) ------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------- */
+
+header[role="banner"] {
+    background: #006837;
+    padding: 10px;
+    background: url(img/header.jpg) no-repeat top center;
+    height: 330px;
+    position: relative;
+}
+
+header[role="banner"] h1 {
+    background: url(img/lostock-cc.png) no-repeat top center;
+    height: 200px;
+    width: 130px;
+    text-indent: -10000px;
+    position: absolute;
+    right: 35px;
+    bottom: 35px;
+}
+header[role="banner"] h1 a {
+    display: block;
+    height: 200px;
+    width: 130px;
+
+}
+
+header[role="banner"] h2 {
+    background: url(img/75-and-counting.png) no-repeat top center;
+    height: 107px;
+    width: 288px;
+    text-indent: -10000px;
+    position: absolute;
+    left:35px;
+    bottom: 35px;
+}
+
+nav {
+    margin-bottom: .8em;
+}
+    nav ul {
+        
+    }
+    nav li {
+        background-color: #006837;
+        margin: 0;
+        
+        border-bottom: 1px solid #fff;
+    }
+
+        nav li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 4px 2px;
+            font-family: "Novecentowide-Light", "HelveticaNeau", Arial, sans-serif;
+        }
+    nav li.current_page_item {
+        border-bottom: 1px solid #561a1a;
+    }
+    
+        nav li.current_page_item a {
+            font-weight: bold;
+        }
+
+#comments, #secondary {
+    display: none;
+}
+
+
+/* 400 and up */
+@media screen and (min-width:400px) {
+
+}
+
+@media screen and (min-width:1000px) {
+    .container {
+        width: 960px;
+        margin: 0 auto;
+    }
+    #comments, #secondary {
+        display: block;
+    }
+    #comments {
+        float: left;
+        width: 182px;
+        margin-right: 20px;
+    }
+    #secondary {
+        float: right;
+        width: 182px;
+        margin-left: 0px;
+    }
+    article[role="main"] {
+        float: left;
+        width: 576px;
+    }
+    #front-page-widget aside {
+        float: left;
+        width: 268px;
+        margin: 0 20px 20px 0;
+    }
+}
+
+@media screen and (min-width:1240px) {
+    .container {
+        width: 1200px;
+        margin: 0 auto;
+    }
+    #comments {
+        width: 230px;
+    }
+    #secondary {
+        float: right;
+        width: 230px;
+    }
+    article[role="main"] {
+        float: left;
+        width: 720px;
+    }
+    #front-page-widget aside {
+        width: 340px;
+    }
+}
+
+/* Retina Display */
+@media screen and (-webkit-min-device-pixel-ratio:2) {
+
+    header[role="banner"] {
+        background-size: cover;
+        height: 120px;
+    }
+    header[role="banner"] h1 {
+        background: url(img/lostock-cc.png) no-repeat top center;
+        background-size: 65px 100px;
+        height: 100px;
+        width: 65px;
+        text-indent: -10000px;
+        bottom: 10px;
+        right: 10px;
+    }
+    header[role="banner"] h1 a {
+        display: block;
+        height: 100px;
+        width: 65px;
+       
+    }
+
+    header[role="banner"] h2 {
+        background: url(img/75-and-counting.png) no-repeat top center;
+        background-size: 144px 53px;
+        height: 53px;
+        width: 144px;
+        text-indent: -10000px;
+        bottom: 10px;
+        left: 10px;
+    }
+
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
