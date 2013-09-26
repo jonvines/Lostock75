@@ -195,5 +195,5 @@
 
     // custom image sizes
     if ( function_exists( 'add_image_size' ) ) { 
-	    add_image_size( 'construction-thumb', 187, 69, true ); //(cropped)
+	    add_image_size( 'construction-thumb', 450, 262, true ); //(cropped)
     }
