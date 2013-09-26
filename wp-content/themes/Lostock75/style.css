@@ -98,7 +98,7 @@ header[role="banner"] {
     background: #006837;
     padding: 10px;
     background: url(img/header.jpg) no-repeat top center;
-    height: 330px;
+    height: 250px;
     position: relative;
 }
 
@@ -108,7 +108,7 @@ header[role="banner"] h1 {
     width: 130px;
     text-indent: -10000px;
     position: absolute;
-    right: 35px;
+    right: 100px;
     bottom: 35px;
 }
 header[role="banner"] h1 a {
@@ -124,8 +124,8 @@ header[role="banner"] h2 {
     width: 288px;
     text-indent: -10000px;
     position: absolute;
-    left:35px;
-    bottom: 35px;
+    left:100px;
+    bottom: 110px;
 }
 
 nav {
@@ -160,6 +160,27 @@ nav {
     display: none;
 }
 
+#join-in {
+    
+}
+    #join-in li {
+        margin-bottom: .6em;
+        height: 70px;
+        padding-left: 75px;
+    }
+        #play-cricket {
+            background: url(img/play-cricket.png) no-repeat top left;
+        }
+        #twitter {
+            background: url(img/twitter.png) no-repeat top left;
+        }
+        #website {
+            background: url(img/website.png) no-repeat top left;
+        }
+        #volunteer {
+            background: url(img/volunteer.png) no-repeat top left;
+        }
+
 
 /* 400 and up */
 @media screen and (min-width:400px) {
@@ -193,6 +214,38 @@ nav {
         width: 268px;
         margin: 0 20px 20px 0;
     }
+
+    nav {
+        margin-bottom: .8em;
+        background-color: #006837;
+        border-radius: 0 0 5px 5px;
+    }
+        nav ul {
+            margin: 0;
+        }
+        nav li {
+            background-color: none;
+            float: left;
+            margin: 3px 10px 0 0;
+            border: none;
+        }
+        nav li:first-child {
+            margin-left: 10px;
+        }
+
+            nav li a {
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                padding: 4px 2px;
+                font-family: "HelveticaNeau", Arial, sans-serif;
+            }
+        nav li.current_page_item {
+            border: none;
+        }
+            nav li.current_page_item a {
+                font-weight: bold;
+            }
 }
 
 @media screen and (min-width:1240px) {
