@@ -68,13 +68,15 @@ h6 	{ font-family: "HelveticaNeau", Arial, sans-serif;
 }
 
 h1, h2, #secondary h3.widget-title {
-    font-size: 1.8em;
+    font-size: 1.5em;
 }
 h1 a {
     color: #fff;
     text-decoration: none;
 }
-
+h2:first-child {
+    border-bottom: 2px solid #006837;
+}
 h3 {
     font-size: 1.4em;
 }
@@ -88,6 +90,10 @@ p, ul, ol {
 
 a {
     color: #561a1a;
+}
+
+.widget img {
+    width: 100%;
 }
 
 /* ---------------------------------------------------------------------------------------------------------- 
@@ -206,15 +212,15 @@ nav {
     #secondary {
         float: right;
         width: 182px;
-        margin-left: 0px;
+        margin-left: 20px;
     }
     article[role="main"] {
         float: left;
-        width: 576px;
+        width: 556px;
     }
     #front-page-widget aside {
         float: left;
-        width: 268px;
+        width: 258px;
         margin: 0 20px 20px 0;
     }
 
@@ -268,10 +274,10 @@ nav {
     }
     article[role="main"] {
         float: left;
-        width: 720px;
+        width: 700px;
     }
     #front-page-widget aside {
-        width: 340px;
+        width: 330px;
     }
 }
 

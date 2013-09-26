@@ -18,7 +18,11 @@
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
- <?php comments_template( '', true ); ?>    
+<div id="comments" class="widget-container" role="complementary">
+		<div class="widget-area">
+			<?php dynamic_sidebar( 'comments-sidebar-1' ); ?>
+		</div><!-- .widget-area -->
+</div>  
 <article role="main">
         <header>
             <h2><?php the_title(); ?></h2>
@@ -29,6 +33,7 @@
 			    <?php dynamic_sidebar( 'front-sidebar-1' ); ?>
 		    </div><!-- .widget-area -->
 	    </div><!-- #secondary -->
+    <?php comments_template( '', true ); ?>
         
            
         
