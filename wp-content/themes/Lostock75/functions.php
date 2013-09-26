@@ -84,7 +84,41 @@
 	
 	======================================================================================================================== */
 
+    // Register people contact
+    add_action('init', 'construction_register');
 
+    function construction_register() {
+ 
+	    $labels = array(
+		    'name' => _x('Construction', 'post type general name'),
+		    'singular_name' => _x('Construction', 'post type singular name'),
+		    'add_new' => _x('Add New', 'Construction'),
+		    'add_new_item' => __('Add New Construction'),
+		    'edit_item' => __('Edit Construction'),
+		    'new_item' => __('New Construction'),
+		    'view_item' => __('View Construction'),
+		    'search_items' => __('Search Construction'),
+		    'not_found' =>  __('Nothing found'),
+		    'not_found_in_trash' => __('Nothing found in Trash'),
+		    'parent_item_colon' => ''
+	    );
+ 
+	    $args = array(
+		    'labels' => $labels,
+		    'public' => true,
+		    'publicly_queryable' => true,
+		    'show_ui' => true,
+		    'query_var' => true,
+		    'rewrite' => true,
+		    'capability_type' => 'post',
+		    'hierarchical' => false,
+		    'menu_position' => 5,
+		    'supports' => array('title','excerpt','editor','thumbnail','page-attributes'),
+		    'taxonomies' => array('category', 'post_tag') // this is IMPORTANT
+	      ); 
+ 
+	    register_post_type( 'construction' , $args );
+    }
 
 	/* ========================================================================================================================
 	
@@ -132,3 +166,34 @@
 			</article>
 		<?php endif;
 	}
+
+    function change_post_menu_label() {
+	    global $menu;
+	    global $submenu;
+	    $menu[5][0] = 'News';
+	    $submenu['edit.php'][5][0] = 'News';
+	    $submenu['edit.php'][10][0] = 'Add News';
+	    $submenu['edit.php'][16][0] = 'News Tags';
+	    echo '';
+    }
+    function change_post_object_label() {
+	    global $wp_post_types;
+	    $labels = &$wp_post_types['post']->labels;
+	    $labels->name = 'News';
+	    $labels->singular_name = 'News';
+	    $labels->add_new = 'Add News';
+	    $labels->add_new_item = 'Add News';
+	    $labels->edit_item = 'Edit News';
+	    $labels->new_item = 'News';
+	    $labels->view_item = 'View News';
+	    $labels->search_items = 'Search News';
+	    $labels->not_found = 'No News found';
+	    $labels->not_found_in_trash = 'No News found in Trash';
+    }
+    add_action( 'init', 'change_post_object_label' );
+    add_action( 'admin_menu', 'change_post_menu_label' );
+
+    // custom image sizes
+    if ( function_exists( 'add_image_size' ) ) { 
+	    add_image_size( 'construction-thumb', 187, 69, true ); //(cropped)
+    }
