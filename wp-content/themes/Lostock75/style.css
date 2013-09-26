@@ -200,6 +200,9 @@ nav {
         width: 182px;
         margin-right: 20px;
     }
+        #comment {
+            width: 162px;
+        }
     #secondary {
         float: right;
         width: 182px;
@@ -256,6 +259,9 @@ nav {
     #comments {
         width: 230px;
     }
+        #comment {
+            width: 210px;
+        }
     #secondary {
         float: right;
         width: 230px;
