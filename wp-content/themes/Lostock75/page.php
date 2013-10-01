@@ -15,7 +15,7 @@
  */
 ?>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
-<div id="comments" class="widget-container" role="complementary">
+<div id="feedback" class="widget-container" role="complementary">
 		<div class="widget-area">
 			<?php dynamic_sidebar( 'comments-sidebar-1' ); ?>
 		</div><!-- .widget-area -->

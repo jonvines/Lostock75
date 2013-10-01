@@ -113,8 +113,9 @@ class My_Recent_Construction extends WP_Widget {
 		<ul>
 		<?php while ( $r->have_posts() ) : $r->the_post(); ?>
 			<li>
-				<a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ? get_the_title() : get_the_ID() ); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a>
-                <?php if ( has_post_thumbnail() ) { echo the_post_thumbnail('construction-thumb'); } ?>
+				<a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ? get_the_title() : get_the_ID() ); ?>">
+                    <?php if ( has_post_thumbnail() ) { echo the_post_thumbnail('construction-thumb'); } ?>
+                </a>
 			<?php if ( $show_date ) : ?>
 				<span class="post-date"><?php echo get_the_date(); ?></span>
 			<?php endif; ?>

@@ -63,8 +63,10 @@ h2,
 h3, 
 h4, 
 h5, 
-h6 	{ font-family: "HelveticaNeau", Arial, sans-serif;
-         margin-bottom: .3em;
+h6 	{ 
+    font-family: "HelveticaNeau", Arial, sans-serif;
+    margin-bottom: .3em;
+    color: #030367;
 }
 
 h1, h2, #secondary h3.widget-title {
@@ -78,7 +80,7 @@ h2:first-child {
     border-bottom: 2px solid #006837;
 }
 h3 {
-    font-size: 1.4em;
+    font-size: 1.2em;
 }
 h4 {
     font-weight: bold;
@@ -89,11 +91,15 @@ p, ul, ol {
 }
 
 a {
-    color: #561a1a;
+    color: #030367;
+}
+a:hover {
+    color: #0707e5;
 }
 
 .widget img {
     width: 100%;
+    height: auto;
 }
 
 /* ---------------------------------------------------------------------------------------------------------- 
@@ -162,10 +168,12 @@ nav {
             font-weight: bold;
         }
 
-#comments, #secondary {
+#feedback, #secondary {
     display: none;
 }
-
+.recentcomments:before, .recentcomments:after {
+    content: '"';
+}
 #join-in {
     
 }
@@ -198,10 +206,10 @@ nav {
         width: 960px;
         margin: 0 auto;
     }
-    #comments, #secondary {
+    #feedback, #secondary {
         display: block;
     }
-    #comments {
+    #feedback {
         float: left;
         width: 182px;
         margin-right: 20px;
@@ -262,7 +270,7 @@ nav {
         width: 1200px;
         margin: 0 auto;
     }
-    #comments {
+    #feedback {
         width: 230px;
     }
         #comment {
