@@ -82,6 +82,13 @@ h2:first-child {
 h3 {
     font-size: 1.2em;
 }
+h3.widget-title {
+    color: #fff;
+    background: #006837;
+    padding: 2px 4px;
+    margin: 0 -4px 4px -4px;
+    border-radius: 5px;
+}
 h4 {
     font-weight: bold;
     margin-bottom: 0;
@@ -224,12 +231,15 @@ nav {
     }
     article[role="main"] {
         float: left;
-        width: 556px;
+        width: 560px;
+    }
+    .widget-area {
+        margin-left: 4px;
     }
     #front-page-widget aside {
         float: left;
-        width: 258px;
-        margin: 0 20px 20px 0;
+        width: 254px;
+        margin: 0 10px 20px;
     }
 
     nav {
@@ -285,7 +295,7 @@ nav {
         width: 700px;
     }
     #front-page-widget aside {
-        width: 330px;
+        width: 326px;
     }
 }
 

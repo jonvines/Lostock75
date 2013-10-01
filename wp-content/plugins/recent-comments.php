@@ -121,6 +121,7 @@ global $comments, $comment;
 			}
  		}
 		$output .= '</ul>';
+        $output .= '<div id="comments-box">' . comment_form() . '</div>';
 		$output .= $after_widget;
 
 		echo $output;
