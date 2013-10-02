@@ -1,13 +1,13 @@
 <?php
 /*
-Plugin Name: Recent construction images
+Plugin Name: Recent pages by category
 Plugin URI: TODO
-Description: This plugin displays recent posts with an excerpt
+Description: This plugin displays recent pages by category
 Version: 1.0
 Author: Jonathan Vines
 Author URI: TODO
 Author Email: TODO
-Text Domain: recent-construction-locale
+Text Domain: recent-comments-locale
 Domain Path: /lang/
 Network: false
 License: GPLv2 or later
@@ -29,8 +29,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-// TODO: change 'My_Recent_Construction' to the name of your plugin
-class My_Recent_Construction extends WP_Widget {
+// TODO: change 'My_Recent_Posts' to the name of your plugin
+class My_Recent_Pages_Category extends WP_Widget {
 
 	/*--------------------------------------------------*/
 	/* Constructor
@@ -50,13 +50,13 @@ class My_Recent_Construction extends WP_Widget {
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 
 		// TODO:	update classname and description
-		// TODO:	replace 'recent-construction-locale' to be named more plugin specific. Other instances exist throughout the code, too.
+		// TODO:	replace 'recent-comments-locale' to be named more plugin specific. Other instances exist throughout the code, too.
 		parent::__construct(
-			'recent-construction-id',
-			__( 'Recent construction', 'recent-construction-locale' ),
+			'recent-pages-category-id',
+			__( 'Recent pages by category', 'recent-pages-category-locale' ),
 			array(
-				'classname'		=>	'recent-construction-widget',
-				'description'	=>	__( 'Recent construction', 'recent-construction-locale' )
+				'classname'		=>	'recent-pages-category',
+				'description'	=>	__( 'Recent pages by category', 'recent-pages-category-locale' )
 			)
 		);
 
@@ -81,8 +81,9 @@ class My_Recent_Construction extends WP_Widget {
 	 * @param	array	instance	The current instance of the widget
 	 */
 	public function widget( $args, $instance ) {
+global $comments, $comment;
 
-		$cache = wp_cache_get('widget_recent_construction', 'widget');
+		$cache = wp_cache_get('widget_recent_pages_category', 'widget');
 
 		if ( !is_array($cache) )
 			$cache = array();
@@ -100,42 +101,33 @@ class My_Recent_Construction extends WP_Widget {
 
 		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts' );
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
-		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 10;
-		if ( ! $number )
- 			$number = 10;
-		$show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
+		$mycategory = ( ! empty( $instance['mycategory'] ) ) ? $instance['mycategory'] : '';
 
-		$r = new WP_Query( apply_filters( 'widget_posts_args', array( 'posts_per_page' => $number, 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true, 'post_type' => 'construction' ) ) );
+		$r = new WP_Query( array( 'category_name' => $mycategory, 'post_type' => 'page' ) );
 		if ($r->have_posts()) :
-?>
-		<?php echo $before_widget; ?>
-		<?php if ( $title ) echo $before_title . $title . $after_title; ?>
-		<ul>
-		<?php while ( $r->have_posts() ) : $r->the_post(); ?>
-			<li>
-				<a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ? get_the_title() : get_the_ID() ); ?>">
-                    <?php if ( has_post_thumbnail() ) { echo the_post_thumbnail('construction-thumb'); } ?>
-                </a>
-			<?php if ( $show_date ) : ?>
-				<span class="post-date"><?php echo get_the_date(); ?></span>
-			<?php endif; ?>
-            <p><?php the_excerpt() ?></p>
-			</li>
-		<?php endwhile; ?>
-		</ul>
-		<?php echo $after_widget; ?>
-<?php
+        ?>
+		        <?php echo $before_widget; ?>
+		        <?php if ( $title ) echo $before_title . $title . $after_title; ?>
+		        <ul>
+		        <?php while ( $r->have_posts() ) : $r->the_post(); ?>
+			        <li>
+				        <h4><a href="<?php the_permalink() ?>" title="<?php echo esc_attr( get_the_title() ? get_the_title() : get_the_ID() ); ?>"><?php if ( has_post_thumbnail() ) { echo the_post_thumbnail('construction-thumb'); } ?></a></h4>
+			        </li>
+		        <?php endwhile; ?>
+		        </ul>
+		        <?php echo $after_widget; ?>
+        <?php
 		// Reset the global $the_post as this query will have stomped on it
 		wp_reset_postdata();
 
 		endif;
 
 		$cache[$args['widget_id']] = ob_get_flush();
-		wp_cache_set('widget_recent_construction', $cache, 'widget');
+		wp_cache_set('widget_recent_pages_category', $cache, 'widget');
 	} // end widget
 
     function flush_widget_cache() {
-		wp_cache_delete('widget_recent_construction', 'widget');
+		wp_cache_delete('widget_recent_pages_category', 'widget');
 	}
 
 	/**
@@ -145,16 +137,14 @@ class My_Recent_Construction extends WP_Widget {
 	 * @param	array	old_instance	The previous instance of values before the update.
 	 */
 	public function update( $new_instance, $old_instance ) {
-
-		$instance = $old_instance;
+        $instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['number'] = (int) $new_instance['number'];
-		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
+		$instance['mycategory'] = strip_tags($new_instance['mycategory']);
 		$this->flush_widget_cache();
 
 		$alloptions = wp_cache_get( 'alloptions', 'options' );
-		if ( isset($alloptions['widget_recent_entries']) )
-			delete_option('widget_recent_entries');
+		if ( isset($alloptions['widget_recent_pages']) )
+			delete_option('widget_recent_pages');
 
 		return $instance;
 
@@ -166,20 +156,15 @@ class My_Recent_Construction extends WP_Widget {
 	 * @param	array	instance	The array of keys and values for the widget.
 	 */
 	public function form( $instance ) {
+        $title  = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
+		$mycategory = isset( $instance['mycategory']) ? esc_attr( $instance['mycategory'] ) : ''
+?>
+		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
-    		$title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
-		    $number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
-		    $show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
-    ?>
-		    <p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-		    <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
-
-		    <p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:' ); ?></label>
-		    <input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
-
-		    <p><input class="checkbox" type="checkbox" <?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
-		    <label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?' ); ?></label></p>
-    <?php
+		<p><label for="<?php echo $this->get_field_id( 'mycategory' ); ?>"><?php _e( 'Category:' ); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id( 'mycategory' ); ?>" name="<?php echo $this->get_field_name( 'mycategory' ); ?>" type="text" value="<?php echo $mycategory; ?>" /></p>
+<?php
 
 		// Display the admin form
 		include( plugin_dir_path(__FILE__) . '/views/admin.php' );
@@ -195,8 +180,8 @@ class My_Recent_Construction extends WP_Widget {
 	 */
 	public function widget_textdomain() {
 
-		// TODO be sure to change 'recent-construction' to the name of *your* plugin
-		load_plugin_textdomain( 'recent-construction-locale', false, plugin_dir_path( __FILE__ ) . '/lang/' );
+		// TODO be sure to change 'recent-pages-category' to the name of *your* plugin
+		load_plugin_textdomain( 'recent-pages-category-locale', false, plugin_dir_path( __FILE__ ) . '/lang/' );
 
 	} // end widget_textdomain
 
@@ -223,8 +208,8 @@ class My_Recent_Construction extends WP_Widget {
 	 */
 	public function register_admin_styles() {
 
-		// TODO:	Change 'recent-construction' to the name of your plugin
-		wp_enqueue_style( 'recent-construction-admin-styles', plugins_url( 'recent-construction/css/admin.css' ) );
+		// TODO:	Change 'recent-pages-category' to the name of your plugin
+		wp_enqueue_style( 'recent-pages-category-admin-styles', plugins_url( 'recent-pages-category/css/admin.css' ) );
 
 	} // end register_admin_styles
 
@@ -233,8 +218,8 @@ class My_Recent_Construction extends WP_Widget {
 	 */
 	public function register_admin_scripts() {
 
-		// TODO:	Change 'recent-construction' to the name of your plugin
-		wp_enqueue_script( 'recent-construction-admin-script', plugins_url( 'recent-construction/js/admin.js' ), array('jquery') );
+		// TODO:	Change 'recent-pages-category' to the name of your plugin
+		wp_enqueue_script( 'recent-pages-category-admin-script', plugins_url( 'recent-pages-category/js/admin.js' ), array('jquery') );
 
 	} // end register_admin_scripts
 
@@ -243,8 +228,8 @@ class My_Recent_Construction extends WP_Widget {
 	 */
 	public function register_widget_styles() {
 
-		// TODO:	Change 'recent-construction' to the name of your plugin
-		wp_enqueue_style( 'recent-construction-widget-styles', plugins_url( 'recent-construction/css/widget.css' ) );
+		// TODO:	Change 'recent-pages-category' to the name of your plugin
+		wp_enqueue_style( 'recent-pages-category-widget-styles', plugins_url( 'recent-pages-category/css/widget.css' ) );
 
 	} // end register_widget_styles
 
@@ -253,12 +238,12 @@ class My_Recent_Construction extends WP_Widget {
 	 */
 	public function register_widget_scripts() {
 
-		// TODO:	Change 'recent-construction' to the name of your plugin
-		wp_enqueue_script( 'recent-construction-script', plugins_url( 'recent-construction/js/widget.js' ), array('jquery') );
+		// TODO:	Change 'recent-pages-category' to the name of your plugin
+		wp_enqueue_script( 'recent-pages-category-script', plugins_url( 'recent-pages-category/js/widget.js' ), array('jquery') );
 
 	} // end register_widget_scripts
 
 } // end class
 
-// TODO:	Remember to change 'My_Recent_Construction' to match the class name definition
-add_action( 'widgets_init', create_function( '', 'register_widget("My_Recent_Construction");' ) );
+// TODO:	Remember to change 'My_Recent_Posts' to match the class name definition
+add_action( 'widgets_init', create_function( '', 'register_widget("My_Recent_Pages_Category");' ) );

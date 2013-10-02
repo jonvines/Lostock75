@@ -174,7 +174,28 @@ nav {
         nav li.current_page_item a {
             font-weight: bold;
         }
-
+#Contact .row {
+        width: 400px;
+        margin-bottom: 10px;
+    }
+    #Contact .label {
+        width: 80px;
+        margin-right: 20px;
+        float: left;
+        text-align: right;
+    }
+    #Contact textarea {
+        width: 231px;
+    }
+    #Contact .submit {
+        margin-left: 100px;
+    }
+        #Contact .submit input {
+            color: #000;
+            border: 1px solid #000;
+            padding: 5px 10px;
+            background: #eedd77;
+        }
 #feedback, #secondary {
     display: none;
 }
@@ -202,6 +223,33 @@ nav {
             background: url(img/volunteer.png) no-repeat top left;
         }
 
+article .links {
+    margin-left: 25px;
+}
+article .links li {
+    list-style: url(img/bullet.png);
+    margin-bottom: 4px;
+}
+
+footer[role="complementary"] {
+    min-height: 60px;
+    margin-top: 30px;
+    padding-top: 20px;
+    background: #006837;
+    border-radius: 5px;
+}
+footer[role="complementary"] ul li {
+  text-align: center;
+  color: #fff;
+  list-style-type: none;
+}
+
+.portfolio-slideshow {
+    min-height: 300px;
+    border-bottom: 1px solid #006837;
+    padding-bottom: 20px;
+    text-align: center;
+}
 
 /* 400 and up */
 @media screen and (min-width:400px) {
@@ -231,7 +279,7 @@ nav {
     }
     article[role="main"] {
         float: left;
-        width: 560px;
+        width: 556px;
     }
     .widget-area {
         margin-left: 4px;

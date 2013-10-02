@@ -164,6 +164,7 @@
 				<time><a href="#comment-<?php comment_ID() ?>" pubdate><?php comment_date() ?> at <?php comment_time() ?></a></time>
 				<?php comment_text() ?>
 			</article>
+        </li>
 		<?php endif;
 	}
 
@@ -197,3 +198,10 @@
     if ( function_exists( 'add_image_size' ) ) { 
 	    add_image_size( 'construction-thumb', 450, 262, true ); //(cropped)
     }
+
+    function myplugin_settings() {
+    // Add category metabox to page
+    register_taxonomy_for_object_type('category', 'page');  
+    }
+     // Add to the admin_init hook of your theme functions.php file 
+    add_action( 'admin_init', 'myplugin_settings' );

@@ -26,7 +26,7 @@ wp-content/*
 # specify (see the commented-out examples for hints on how to do this.)
 wp-content/plugins/*
 !wp-content/plugins/recent-posts.php
-!wp-content/plugins/recent-construction.php
+!wp-content/plugins/recent-pages-by-category.php
 !wp-content/plugins/recent-comments.php
 # !wp-content/plugins/my-directory-plugin/
  
