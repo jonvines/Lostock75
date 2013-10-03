@@ -199,8 +199,23 @@ nav {
 #feedback, #secondary {
     display: none;
 }
+.recentcomments {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #006837;
+}
 .recentcomments:before, .recentcomments:after {
     content: '"';
+}
+#OpenFeedback {
+    background: #006837;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 0;
+}
+#OpenFeedback a {
+    color: #fff;
+    display: block;
 }
 #join-in {
     

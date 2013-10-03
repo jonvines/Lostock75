@@ -84,42 +84,6 @@
 	
 	======================================================================================================================== */
 
-    // Register people contact
-    add_action('init', 'construction_register');
-
-    function construction_register() {
- 
-	    $labels = array(
-		    'name' => _x('Construction', 'post type general name'),
-		    'singular_name' => _x('Construction', 'post type singular name'),
-		    'add_new' => _x('Add New', 'Construction'),
-		    'add_new_item' => __('Add New Construction'),
-		    'edit_item' => __('Edit Construction'),
-		    'new_item' => __('New Construction'),
-		    'view_item' => __('View Construction'),
-		    'search_items' => __('Search Construction'),
-		    'not_found' =>  __('Nothing found'),
-		    'not_found_in_trash' => __('Nothing found in Trash'),
-		    'parent_item_colon' => ''
-	    );
- 
-	    $args = array(
-		    'labels' => $labels,
-		    'public' => true,
-		    'publicly_queryable' => true,
-		    'show_ui' => true,
-		    'query_var' => true,
-		    'rewrite' => true,
-		    'capability_type' => 'post',
-		    'hierarchical' => false,
-		    'menu_position' => 5,
-		    'supports' => array('title','excerpt','editor','thumbnail','page-attributes'),
-		    'taxonomies' => array('category', 'post_tag') // this is IMPORTANT
-	      ); 
- 
-	    register_post_type( 'construction' , $args );
-    }
-
 	/* ========================================================================================================================
 	
 	Scripts
@@ -159,7 +123,6 @@
 		<?php if ( $comment->comment_approved == '1' ): ?>	
 		<li>
 			<article id="comment-<?php comment_ID() ?>">
-				<?php echo get_avatar( $comment ); ?>
 				<h4><?php comment_author_link() ?></h4>
 				<time><a href="#comment-<?php comment_ID() ?>" pubdate><?php comment_date() ?> at <?php comment_time() ?></a></time>
 				<?php comment_text() ?>

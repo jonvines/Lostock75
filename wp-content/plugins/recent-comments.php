@@ -121,7 +121,7 @@ global $comments, $comment;
 			}
  		}
 		$output .= '</ul>';
-        $output .= '<div id="comments-box">' . comment_form() . '</div>';
+        $output .= '<div id="OpenFeedback"><a href="http://192.10.9.225:52814/?page_id=87">Give feedback</a></div>';
 		$output .= $after_widget;
 
 		echo $output;

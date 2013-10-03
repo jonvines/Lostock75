@@ -1,0 +1,64 @@
+.container {
+        width: 960px;
+        margin: 0 auto;
+    }
+    #feedback, #secondary {
+        display: block;
+    }
+    #feedback {
+        float: left;
+        width: 182px;
+        margin-right: 20px;
+    }
+        #comment {
+            width: 162px;
+        }
+    #secondary {
+        float: right;
+        width: 182px;
+        margin-left: 20px;
+    }
+    article[role="main"] {
+        float: left;
+        width: 556px;
+    }
+    .widget-area {
+        margin-left: 4px;
+    }
+    #front-page-widget aside {
+        float: left;
+        width: 254px;
+        margin: 0 10px 20px;
+    }
+
+    nav {
+        margin-bottom: .8em;
+        background-color: #006837;
+        border-radius: 0 0 5px 5px;
+    }
+        nav ul {
+            margin: 0;
+        }
+        nav li {
+            background-color: none;
+            float: left;
+            margin: 3px 10px 0 0;
+            border: none;
+        }
+        nav li:first-child {
+            margin-left: 10px;
+        }
+
+            nav li a {
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                padding: 4px 2px;
+                font-family: "HelveticaNeau", Arial, sans-serif;
+            }
+        nav li.current_page_item {
+            border: none;
+        }
+            nav li.current_page_item a {
+                font-weight: bold;
+            }
