@@ -121,7 +121,7 @@ global $comments, $comment;
 			}
  		}
 		$output .= '</ul>';
-        $output .= '<div id="OpenFeedback"><a href="http://192.10.9.225:52814/?page_id=87">Give feedback</a></div>';
+        $output .= '<ul class="links"><li><a href="http://192.10.9.225:52814/?page_id=87">Give feedback</a></li></ul>';
 		$output .= $after_widget;
 
 		echo $output;

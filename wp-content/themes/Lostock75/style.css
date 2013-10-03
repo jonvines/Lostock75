@@ -95,6 +95,7 @@ h4 {
 }
 p, ul, ol {
     margin-bottom: .6em;
+    line-height: 1.5em;
 }
 
 a {
@@ -112,6 +113,10 @@ a:hover {
 /* ---------------------------------------------------------------------------------------------------------- 
 03 Media queries (using a mobile-first approach) ------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------- */
+
+.container {
+    margin: 0 10px;
+}
 
 header[role="banner"] {
     background: #006837;
@@ -238,10 +243,10 @@ nav {
             background: url(img/volunteer.png) no-repeat top left;
         }
 
-article .links {
+.links {
     margin-left: 25px;
 }
-article .links li {
+.links li {
     list-style: url(img/bullet.png);
     margin-bottom: 4px;
 }
@@ -336,6 +341,10 @@ footer[role="complementary"] ul li {
             nav li.current_page_item a {
                 font-weight: bold;
             }
+    .goright {
+        float: right;
+        margin: 0 0 10px 10px;
+    }
 }
 
 @media screen and (min-width:1240px) {
@@ -394,7 +403,35 @@ footer[role="complementary"] ul li {
         bottom: 10px;
         left: 10px;
     }
+}
 
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px)  { 
+    .goright {
+        display: block;
+        margin: 10px 0;
+    }
+    #front-page-widget aside {
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation:portrait) {
+  /* For portrait layouts only */
+    .goright {
+        float: right;
+        margin: 0 0 10px 10px;
+    }
+    article[role="main"] {
+        float: left;
+        width: 740px;
+    }
+    #front-page-widget aside {
+        width: 346px;
+        float: left;
+        margin: 0 10px 20px;
+    }
 }
 
 .clearfix:before,
