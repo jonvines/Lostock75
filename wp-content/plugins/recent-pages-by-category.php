@@ -103,7 +103,7 @@ global $comments, $comment;
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 		$mycategory = ( ! empty( $instance['mycategory'] ) ) ? $instance['mycategory'] : '';
 
-		$r = new WP_Query( array( 'category_name' => $mycategory, 'post_type' => 'page' ) );
+		$r = new WP_Query( array( 'category_name' => $mycategory ) );
 		if ($r->have_posts()) :
         ?>
 		        <?php echo $before_widget; ?>

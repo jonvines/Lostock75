@@ -62,3 +62,7 @@
             nav li.current_page_item a {
                 font-weight: bold;
             }
+.goright {
+    float: right;
+    margin: 0 0 10px 10px;
+}
